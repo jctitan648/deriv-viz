@@ -1,7 +1,7 @@
 # deriv-viz
 A certain small, very small and quick project for Calculus.
 
-Install:
+Install:  
 0. Download and install Python.
 1. Go to your desired directory in the terminal.
 2. Clone this repository.  
@@ -12,3 +12,6 @@ Install:
 `pip install -r requirements.txt`
 
 Done! Launch the app with `main.py`.
+
+TODO:  
+Fix bugs lmao
