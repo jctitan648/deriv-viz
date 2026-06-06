@@ -29,7 +29,6 @@ def safe_eval(expr: str, x):
 
 # ── Page layout ─────────────────────────────────────────────────────────────
 ui.add_head_html("""
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg:      #0d0f14;
@@ -47,7 +46,7 @@ ui.add_head_html("""
   body, .nicegui-content {
     background: var(--bg) !important;
     color: var(--text) !important;
-    font-family: 'Syne', sans-serif !important;
+    font-family: 'Consolas', sans-serif !important;
     margin: 0 !important;
     padding: 0 !important;
   }
@@ -60,6 +59,7 @@ ui.add_head_html("""
     display: flex;
     align-items: flex-end;
     gap: 16px;
+    margin: 0 auto;
   }
   .dv-title {
     font-size: 2rem;
@@ -70,7 +70,7 @@ ui.add_head_html("""
   }
   .dv-title span { color: var(--accent); }
   .dv-subtitle {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Consolas', monospace;
     font-size: 0.72rem;
     color: var(--muted);
     margin-left: auto;
@@ -84,6 +84,7 @@ ui.add_head_html("""
     grid-template-columns: 300px 1fr;
     gap: 0;
     min-height: calc(100vh - 85px);
+    margin: 0 auto;
   }
 
   /* Sidebar */
@@ -96,7 +97,7 @@ ui.add_head_html("""
     gap: 24px;
   }
   .dv-section-label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Consolas', monospace;
     font-size: 0.65rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -111,7 +112,7 @@ ui.add_head_html("""
     color: #0d0f14 !important;
     border: none !important;
     border-radius: 8px !important;
-    font-family: 'Space Mono', monospace !important;
+    font-family: 'Consolas', monospace !important;
     font-size: 0.78rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.06em !important;
@@ -132,14 +133,14 @@ ui.add_head_html("""
     border: 1px solid var(--border) !important;
     border-radius: var(--radius) !important;
     color: var(--text) !important;
-    font-family: 'Space Mono', monospace !important;
+    font-family: 'Consolas', monospace !important;
   }
   .nicegui-input .q-field__native,
   .nicegui-select .q-field__native {
     color: var(--text) !important;
-    font-family: 'Space Mono', monospace !important;
+    font-family: 'Consolas', monospace !important;
   }
-  .q-field__label { color: var(--muted) !important; font-family: 'Space Mono', monospace !important; font-size: 0.75rem !important; }
+  .q-field__label { color: var(--muted) !important; font-family: 'Consolas', monospace !important; font-size: 0.75rem !important; }
   .q-field--focused .q-field__control { border-color: var(--accent) !important; }
   .q-slider__thumb { color: var(--accent) !important; }
   .q-slider__track-container { color: var(--accent) !important; }
@@ -151,7 +152,7 @@ ui.add_head_html("""
     border: 1px solid var(--border) !important;
     border-radius: 8px !important;
     color: var(--text) !important;
-    font-family: 'Space Mono', monospace !important;
+    font-family: 'Consolas', monospace !important;
     font-size: 0.72rem !important;
     padding: 8px 6px !important;
     cursor: pointer !important;
@@ -168,7 +169,7 @@ ui.add_head_html("""
     padding: 14px 16px;
   }
   .info-card .label {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Consolas', monospace;
     font-size: 0.65rem;
     color: var(--muted);
     letter-spacing: 0.1em;
@@ -176,7 +177,7 @@ ui.add_head_html("""
     margin-bottom: 4px;
   }
   .info-card .value {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Consolas', monospace;
     font-size: 1.05rem;
     font-weight: 700;
   }
@@ -205,7 +206,7 @@ ui.add_head_html("""
     border: 1px solid rgba(255,107,107,0.4);
     border-radius: 8px;
     padding: 10px 14px;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Consolas', monospace;
     font-size: 0.75rem;
     color: var(--accent2);
     display: none;
@@ -224,8 +225,8 @@ ui.add_head_html("""
     flex-wrap: wrap;
   }
   .tangent-bar .tb-item { display: flex; flex-direction: column; gap: 2px; }
-  .tangent-bar .tb-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
-  .tangent-bar .tb-val   { font-family: 'Space Mono', monospace; font-size: 0.9rem; font-weight: 700; }
+  .tangent-bar .tb-label { font-family: 'Consolas', monospace; font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .tangent-bar .tb-val   { font-family: 'Consolas', monospace; font-size: 0.9rem; font-weight: 700; }
   .sep { width: 1px; height: 32px; background: var(--border); }
 </style>
 """)
@@ -349,12 +350,9 @@ with ui.element("div").classes("dv-layout"):
             xmin_input = ui.number(label="x min", value=state["x_min"], step=0.5).props('dense outlined').classes("flex-1")
             xmax_input = ui.number(label="x max", value=state["x_max"], step=0.5).props('dense outlined').classes("flex-1")
 
-        # Tangent point — dual slider (normal = integer snap, Shift = fine 0.05 snap)
-        ui.html('<div class="dv-section-label" style="margin-top:4px">Tangent point  x₀ &nbsp;<span style="font-size:0.6rem;color:#6b7280">(hold Shift for fine steps)</span></div>')
-        with ui.element('div').style('position:relative; width:100%'):
-            xpt_slider       = ui.slider(min=state["x_min"], max=state["x_max"], step=1,    value=state["x_pt"]).props('color=teal').classes('w-full xpt-coarse')
-            xpt_slider_fine  = ui.slider(min=state["x_min"], max=state["x_max"], step=0.05, value=state["x_pt"]).props('color=teal').classes('w-full xpt-fine').style('position:absolute;top:0;left:0;display:none')
-        xpt_label  = ui.html(f'<div style="font-family:Space Mono,monospace;font-size:0.78rem;color:#5cffb0;text-align:center">x₀ = {state["x_pt"]}</div>')
+        # Tangent point — number input
+        ui.html('<div class="dv-section-label" style="margin-top:4px">Tangent point  x₀</div>')
+        xpt_input = ui.number(label="x₀", value=state["x_pt"], min=state["x_min"], max=state["x_max"], step=0.05).props('dense outlined').classes('w-full')
 
         # Toggles
         ui.html('<div class="dv-section-label" style="margin-top:4px">Display</div>')
@@ -374,16 +372,16 @@ with ui.element("div").classes("dv-layout"):
                 "grid": {"top": 24, "right": 24, "bottom": 48, "left": 56},
                 "xAxis": {"type": "value", "axisLine": {"lineStyle": {"color": "#2a2f40"}},
                           "splitLine": {"lineStyle": {"color": "#1e2330"}},
-                          "axisLabel": {"color": "#6b7280", "fontFamily": "Space Mono"}},
+                          "axisLabel": {"color": "#6b7280", "fontFamily": "Consolas"}},
                 "yAxis": {"type": "value", "axisLine": {"lineStyle": {"color": "#2a2f40"}},
                           "splitLine": {"lineStyle": {"color": "#1e2330"}},
-                          "axisLabel": {"color": "#6b7280", "fontFamily": "Space Mono"}},
+                          "axisLabel": {"color": "#6b7280", "fontFamily": "Consolas"}},
                 "tooltip": {"trigger": "axis",
                             "backgroundColor": "#1a1e2b",
                             "borderColor": "#2a2f40",
-                            "textStyle": {"color": "#e8ecf5", "fontFamily": "Space Mono", "fontSize": 12}},
+                            "textStyle": {"color": "#e8ecf5", "fontFamily": "Consolas", "fontSize": 12}},
                 "legend": {"data": ["f(x)", "f ′(x)", "Tangent"],
-                           "textStyle": {"color": "#6b7280", "fontFamily": "Space Mono", "fontSize": 11},
+                           "textStyle": {"color": "#6b7280", "fontFamily": "Consolas", "fontSize": 11},
                            "top": 0},
                 "series": []
             }).classes("w-full").style("height: 480px")
@@ -519,27 +517,29 @@ def on_range_change():
             return
         state["x_min"] = lo
         state["x_max"] = hi
-        xpt_slider.min = lo
-        xpt_slider.max = hi
-        xpt_slider_fine.min = lo
-        xpt_slider_fine.max = hi
+        xpt_input.min = lo
+        xpt_input.max = hi
         state["x_pt"] = max(lo, min(hi, state["x_pt"]))
-        xpt_slider.value = state["x_pt"]
-        xpt_slider_fine.value = state["x_pt"]
-        xpt_slider.update()
-        xpt_slider_fine.update()
+        xpt_input.value = state["x_pt"]
+        xpt_input.update()
         refresh_chart()
     except Exception:
         pass
 
 def on_xpt_change(_=None):
-    # Read whichever slider is currently active
-    val = xpt_slider_fine.value if state.get('fine_mode') else xpt_slider.value
-    state["x_pt"] = round(float(val), 3)
-    # Keep both sliders in sync
-    xpt_slider.value = state["x_pt"]
-    xpt_slider_fine.value = state["x_pt"]
-    xpt_label.set_content(f'<div style="font-family:Space Mono,monospace;font-size:0.78rem;color:#5cffb0;text-align:center">x₀ = {state["x_pt"]}</div>')
+    try:
+        val = float(xpt_input.value)
+    except (TypeError, ValueError):
+        # Invalid input — reset to default
+        xpt_input.value = state["x_pt"]
+        xpt_input.update()
+        return
+    # Clamp to current range
+    val = max(state["x_min"], min(state["x_max"], val))
+    val = round(val, 3)
+    state["x_pt"] = val
+    xpt_input.value = val
+    xpt_input.update()
     refresh_chart()
 
 def on_toggle(_):
@@ -553,24 +553,10 @@ xmin_input.on("blur", lambda _: on_range_change())
 xmax_input.on("blur", lambda _: on_range_change())
 xmin_input.on("keyup.enter", lambda _: on_range_change())
 xmax_input.on("keyup.enter", lambda _: on_range_change())
-xpt_slider.on("update:model-value", on_xpt_change)
-xpt_slider_fine.on("update:model-value", on_xpt_change)
+xpt_input.on("keyup.enter", on_xpt_change)
+xpt_input.on("blur", on_xpt_change)
 toggle_deriv.on("update:model-value", on_toggle)
 toggle_tangent.on("update:model-value", on_toggle)
-
-# Shift key swaps which slider is visible/active
-def on_key(e):
-    if e.key == 'Shift':
-        fine = e.action == 'keydown'
-        state['fine_mode'] = fine
-        coarse_display = 'none' if fine else 'block'
-        fine_display   = 'block' if fine else 'none'
-        ui.run_javascript(
-            f'document.querySelectorAll(".xpt-coarse")[0].style.display = "{coarse_display}";'
-            f'document.querySelectorAll(".xpt-fine")[0].style.display   = "{fine_display}";'
-        )
-
-ui.keyboard(on_key=on_key, ignore=['input', 'select', 'button', 'textarea'])
 
 # Initial draw
 ui.timer(0.1, refresh_chart, once=True)
