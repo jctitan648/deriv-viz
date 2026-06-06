@@ -14,4 +14,4 @@ Install:
 Done! Launch the app with `main.py`.
 
 TODO:  
-Fix bugs lmao
+finished, mainly
